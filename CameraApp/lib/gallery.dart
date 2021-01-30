@@ -157,7 +157,7 @@ class _AlbumSelectorState extends State<AlbumSelector> {
   @override
   Widget build(BuildContext context) {
     return (GridView.builder(
-      itemBuilder: (context, index) => getAlbum(index - 1),
+      itemBuilder: (context, index) => getAlbum(index),
       itemCount: (albums.isEmpty) ? 0 : albums.length,
       gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
         childAspectRatio: 1,
