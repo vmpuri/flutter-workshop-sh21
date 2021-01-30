@@ -17,19 +17,15 @@ class _ImageSelectorState extends State<ImageSelector> {
   List<AssetEntity> photos;
 
   Widget getPhoto(int index) {
-    if (index > photos.length) {
+    if (index > this.photos.length) {
       widget.album
-          .getAssetListRange(start: index, end: index + 5)
+          .getAssetListRange(start: index, end: index + 1)
           .then((value) {
         value.forEach((el) {
           photos.add(el);
         });
       });
     }
-    var image;
-    photos[index].file.then((f) {
-      image = f;
-    });
     return (index <= photos.length)
         ? InkResponse(
             child: Container(child: Builder(
@@ -49,7 +45,7 @@ class _ImageSelectorState extends State<ImageSelector> {
                     color: Colors.blue[200],
                     child: Center(
                       child: Text(
-                        photos[index].title,
+                        (photos.length >= index) ? photos[index].title : '',
                         style: TextStyle(fontSize: 20, color: Colors.white),
                       ),
                     ),
@@ -65,7 +61,7 @@ class _ImageSelectorState extends State<ImageSelector> {
   void initState() {
     super.initState();
     this.photos = [];
-    widget.album.getAssetListRange(start: 0, end: 5).then((value) {
+    widget.album.getAssetListRange(start: 0, end: 6).then((value) {
       setState(() {
         value.forEach((v) {
           photos.add(v);
