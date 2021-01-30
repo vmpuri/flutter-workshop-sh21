@@ -17,18 +17,20 @@ class _ImageSelectorState extends State<ImageSelector> {
   List<AssetEntity> photos;
 
   Widget getPhoto(int index) {
-    if (index > this.photos.length) {
+    if (index >= this.photos.length) {
       widget.album
           .getAssetListRange(start: index, end: index + 1)
           .then((value) {
-        value.forEach((el) {
-          photos.add(el);
+        setState(() {
+          value.forEach((el) {
+            photos.add(el);
+          });
         });
-        setState(() {});
       });
     }
     return (index < photos.length)
         ? InkResponse(
+            onTap: () {},
             child: Container(child: Builder(
               builder: (BuildContext context) {
                 return GridTile(
@@ -39,7 +41,7 @@ class _ImageSelectorState extends State<ImageSelector> {
                         if (snapshot.hasData) {
                           return Image.memory(snapshot.data);
                         } else
-                          return Center(child: Text('Loading'));
+                          return Center(child: Text('Loading...'));
                       }),
                   //Image.file(image),
                   footer: Container(
@@ -47,7 +49,9 @@ class _ImageSelectorState extends State<ImageSelector> {
                     child: Center(
                       child: Text(
                         (photos.length >= index)
-                            ? (index.toString() + ' - ' + photos[index].title)
+                            ? (photos.length.toString() +
+                                ' - ' +
+                                photos[index].title)
                             : '',
                         style: TextStyle(fontSize: 20, color: Colors.white),
                       ),
