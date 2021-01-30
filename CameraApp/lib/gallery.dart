@@ -54,7 +54,7 @@ class _ImageSelectorState extends State<ImageSelector> {
               },
             )),
           )
-        : Null;
+        : Text('Loading...');
   }
 
   @override
@@ -110,6 +110,7 @@ class _AlbumSelectorState extends State<AlbumSelector> {
   @override
   void initState() {
     super.initState();
+
     this.albums = [];
     PhotoManager.requestPermission().then((value) {
       if (value) {
@@ -156,7 +157,7 @@ class _AlbumSelectorState extends State<AlbumSelector> {
   @override
   Widget build(BuildContext context) {
     return (GridView.builder(
-      itemBuilder: (context, index) => getAlbum(index),
+      itemBuilder: (context, index) => getAlbum(index - 1),
       itemCount: (albums.isEmpty) ? 0 : albums.length,
       gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
         childAspectRatio: 1,
