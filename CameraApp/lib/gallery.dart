@@ -24,9 +24,10 @@ class _ImageSelectorState extends State<ImageSelector> {
         value.forEach((el) {
           photos.add(el);
         });
+        setState(() {});
       });
     }
-    return (index <= photos.length)
+    return (index < photos.length)
         ? InkResponse(
             child: Container(child: Builder(
               builder: (BuildContext context) {
@@ -45,7 +46,9 @@ class _ImageSelectorState extends State<ImageSelector> {
                     color: Colors.blue[200],
                     child: Center(
                       child: Text(
-                        (photos.length >= index) ? photos[index].title : '',
+                        (photos.length >= index)
+                            ? (index.toString() + ' - ' + photos[index].title)
+                            : '',
                         style: TextStyle(fontSize: 20, color: Colors.white),
                       ),
                     ),
@@ -54,7 +57,7 @@ class _ImageSelectorState extends State<ImageSelector> {
               },
             )),
           )
-        : Text('Loading...');
+        : Center(child: Text('Loading...'));
   }
 
   @override
