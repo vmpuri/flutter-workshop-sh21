@@ -1,5 +1,6 @@
 # flutter-workshop-sh21
 Flutter Workshop template for SwampHacks 2021
+*Author: Varun Puri*
 
 ## Introduction
 
@@ -8,8 +9,7 @@ Flutter Workshop template for SwampHacks 2021
 * Flutter vs. other mobile dev frameworks
     * Imperative vs. Declarative style
 * Basic components of Flutter apps: Widgets
-* State Management using Provider
-* Lazy Loading and JIT
+* Lazy Loading 
 
 ## What We're building
-* Camera App with Gallery
+Image Gallery! 
