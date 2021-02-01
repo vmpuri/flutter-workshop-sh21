@@ -17,7 +17,7 @@ class _ImageSelectorState extends State<ImageSelector> {
   List<AssetEntity> photos;
 
   Widget getPhoto(int index) {
-    if (index >= this.photos.length) {
+    if (index == this.photos.length) {
       widget.album
           .getAssetListRange(start: index, end: index + 1)
           .then((value) {
